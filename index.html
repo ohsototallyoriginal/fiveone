@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Five-One" />
+  <meta name="theme-color" content="#070500" />
+  <title>Five-One</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="world" aria-hidden="true"><i class="alley"></i></div>
+
+  <header class="top">
+    <div class="nav-left">
+      <div class="brand-mark" aria-hidden="true">51</div>
+      <button type="button" class="chip" id="homeBtn">Home</button>
+      <button type="button" class="chip" id="workshopBtn">Workshop</button>
+    </div>
+    <div class="nav-right">
+      <span class="chip" id="live">Wait</span>
+      <button type="button" class="chip" id="lockBtn">Lock</button>
+    </div>
+  </header>
+
+  <div id="toasts" aria-live="polite"></div>
+
+  <section id="gate" class="view">
+    <div class="sheet-wrap">
+      <div class="sheet">
+        <p class="eyebrow">Private night</p>
+        <h1>Five-One</h1>
+        <p class="lede" id="gateLede">A key opens the workshop. This browser keeps it so you are not locked out on refresh.</p>
+        <label class="set" for="gatePin" id="gateLabel">Key</label>
+        <input id="gatePin" type="password" autocomplete="current-password" />
+        <p class="err" id="gateErr"></p>
+        <div class="actions-row">
+          <button type="button" class="btn primary" id="gateGo">Enter</button>
+        </div>
+        <p class="hint" id="gateHint"></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="workshop" class="view">
+    <div class="sheet-wrap">
+      <div class="sheet">
+        <p class="eyebrow">Workshop</p>
+        <h1>Build the night</h1>
+        <p class="lede">Ang is fixed. You set the room, the scale, and how much she knows.</p>
+
+        <label class="set">You are</label>
+        <div class="plate-grid" id="plateGrid"></div>
+        <div id="customPlate" hidden>
+          <label class="set" for="plName">Name</label>
+          <input id="plName" type="text" maxlength="40" />
+          <div class="row2">
+            <div>
+              <label class="set" for="plPronouns">Pronouns</label>
+              <input id="plPronouns" type="text" value="they/them" />
+            </div>
+            <div>
+              <label class="set" for="plRel">To Ang</label>
+              <input id="plRel" type="text" placeholder="friend, brother, girlfriend…" />
+            </div>
+          </div>
+          <label class="set" for="plAbout">Look / personality</label>
+          <textarea id="plAbout" placeholder="Adult only. Leave blank if you want to reveal it in play."></textarea>
+          <label class="set" for="plTreat">How she treats you</label>
+          <textarea id="plTreat"></textarea>
+        </div>
+
+        <label class="set" for="nTitle">Night title</label>
+        <input id="nTitle" type="text" placeholder="Half-packed studio" />
+        <label class="set" for="nBlurb">Blurb</label>
+        <textarea id="nBlurb" placeholder="What this night is."></textarea>
+        <div class="row2">
+          <div>
+            <label class="set" for="nLoc">Location</label>
+            <input id="nLoc" type="text" placeholder="her White Plains studio" />
+          </div>
+          <div>
+            <label class="set" for="nPlace">You are</label>
+            <input id="nPlace" type="text" placeholder="on the packing tape, or on the couch" />
+          </div>
+        </div>
+
+        <label class="set">Scale</label>
+        <div class="pills" id="sizePills"></div>
+        <label class="set">Awareness</label>
+        <div class="pills" id="awarePills"></div>
+        <label class="set">Intent</label>
+        <div class="pills" id="intentPills"></div>
+        <label class="set">Tone</label>
+        <div class="pills" id="tonePills"></div>
+        <label class="set">Sleep</label>
+        <div class="pills" id="sleepPills"></div>
+        <label class="set">Gut module</label>
+        <div class="pills" id="gutPills"></div>
+
+        <label class="set" for="nHook">Hook (extra lock for her)</label>
+        <textarea id="nHook" placeholder="Stay in this room. Boxes everywhere. She is taping the kitchen."></textarea>
+        <label class="set" for="nOpenM">Opening moment</label>
+        <textarea id="nOpenM"></textarea>
+        <label class="set" for="nOpenL">Opening line</label>
+        <textarea id="nOpenL"></textarea>
+
+        <div class="actions-row">
+          <button type="button" class="btn primary" id="startNight">Start night</button>
+          <button type="button" class="btn" id="continueNightBtn">Continue last night</button>
+        </div>
+        <p class="hint">Stills are a blank stage for now. The meters still run on giantess nights.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="play" class="view">
+    <div id="stageCol">
+      <div id="stage" aria-label="Scene stage. Stills come later.">
+        <div class="stage-ph">
+          <b>Five-One</b>
+          <span>Stage stills come later</span>
+        </div>
+        <div id="shotchip">outside</div>
+      </div>
+      <div id="meter">
+        <div class="meter-labels">
+          <span>Palm</span><span>Tongue</span><span>Gulp</span><span>Gut</span>
+        </div>
+        <div class="meter-track"><div class="meter-fill" id="depthFill"></div></div>
+        <div id="digestMeter">
+          <div class="dm-head">
+            <span class="dm-title" id="dmTitle">Digest</span>
+            <span class="dm-clock" id="dmClock">--:--</span>
+          </div>
+          <div class="meter-track"><div class="meter-fill" id="dmFill"></div></div>
+          <div class="dm-adjust">
+            <button type="button" id="dmMinus">−1:00</button>
+            <button type="button" id="dmPlus">+1:00</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="log"></div>
+  </section>
+
+  <div class="dock" id="dock" hidden>
+    <div class="actions">
+      <button type="button" id="look">Look</button>
+      <button type="button" id="talk">Talk</button>
+      <button type="button" id="hide">Hide</button>
+      <button type="button" id="tease">Tease</button>
+    </div>
+    <div class="compose-modes">
+      <button type="button" id="modeSay" class="on">Say</button>
+      <button type="button" id="modeDo">Do</button>
+    </div>
+    <div class="composer">
+      <textarea id="input" rows="1" placeholder="Talk to her…"></textarea>
+      <button type="button" id="send">Send</button>
+    </div>
+    <p id="composeHint">Chat. Wrap contact in <b>*asterisks*</b>.</p>
+    <div class="gone-bar">
+      <p class="hint" id="goneNote">You’re gone. She keeps the same night.</p>
+      <div class="row2" style="margin-top:8px">
+        <button type="button" class="btn primary" id="keepGoing">Continue her night</button>
+        <button type="button" class="btn" id="newFromGone">Workshop</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="guide.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
